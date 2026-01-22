@@ -32,7 +32,7 @@ print("np.sum(arr)=", np_arr.sum())    # sum using NumPy method
 a = np.array([1, 2, 3])            # create from Python list
 z = np.zeros((2, 3))               # 2x3 array filled with 0.0 (float) Fixes the problem of size complexity in sparse matrix
 o = np.ones((3, 2))                # 3x2 array filled with 1.0
-r = np.arange(0, 10, 2)            # integers [0,2,4,6,8] (stop is exclusive)
+r = np.arange(0, 5, 0.5)            # integers [0,2,4,6,8] (stop is exclusive)
 l = np.linspace(0, 1, 5)           # 5 evenly spaced points from 0 to 1
 
 print("Array a:", a)               # show 1D array
@@ -41,10 +41,15 @@ print("Ones  o:\n", o)             # show 2D ones array
 print("Arange r:", r)              # show step sequence
 print("Linspace l:", l)            # show evenly spaced points
 
+
+print('**************************************')
+print('**************************************')
+
 # Control data type at creation (memory/speed/precision)
 # This is great because normally python isn't super specific with types.
 ints32 = np.array([1, 2, 3], dtype=np.int32)   # force 32-bit int
 floats = np.array([1, 2, 3], dtype=np.float64) # force 64-bit float (default on many systems)
+ints16 = np.array([1,2,3,4,5,6,7,8], dtype=np.int16)
 print("dtype control:", ints32.dtype, floats.dtype)  # print element dtypes
 
 # ********************** 3) ARRAY ATTRIBUTES **********************
@@ -58,9 +63,9 @@ print("size  ->", arr2d.size)       # total element count (6)
 print("dtype ->", arr2d.dtype)      # data type of elements
 
 # Views vs copies (reshape returns a view when possible)
-base = np.arange(6)                 # array [0 1 2 3 4 5]
-view = base.reshape(2, 3)           # 2x3 view that shares memory
-base[0] = 99                        # modify base in-place
+base = np.arange(12)                 # array [0 1 2 3 4 5]
+view = base.reshape(2, 6)           # 2x3 view that shares memory
+base[10] = 9                        # modify base in-place
 print("view sees base change:\n", view)  # view reflects the change
 safe = base.copy()                  # explicit independent copy
 base[1] = -1                        # modify base again
@@ -79,6 +84,15 @@ b = np.array([[1, 2, 3],
 print("b[0,1] ->", b[0, 1])         # element at row 0, col 1 (value 2)
 print("b[:,1] ->", b[:, 1])         # all rows, column 1 (get a column)
 print("b[1,:] ->", b[1, :])         # row 1, all columns (get a row)
+
+
+c = np.array([[1,2,3],
+             [4,5,6],
+             [7,8,9]])
+
+print('6767676767767676767767767767')
+print('c[2,1] ->', c[2,1] )
+
 
 # Boolean mask to filter values
 mask = a > 25                       # boolean array: True where a > 25
